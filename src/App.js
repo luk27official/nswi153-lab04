@@ -1,6 +1,8 @@
 import './App.css';
 import React, { createContext, useContext, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button } from 'reactstrap';
 
 const countContext = createContext(null);
 
@@ -18,23 +20,16 @@ function App() {
   return (
   <countContext.Provider value={{ count, decrease, increase }}>
     <Router>
-      <div>
+      <div className="center">
         <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-          </ul>
+          <Button color="info" className="buttonWithMargin"><Link to="/" className='nodecorations'>Increase button</Link></Button>
+          <Button color="info" className="buttonWithMargin"><Link to="/decrease" className='nodecorations'>Decrease button</Link></Button>
         </nav>
-
         <hr />
 
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/" element={<Increase />} />
+          <Route path="/decrease" element={<Decrease />} />
         </Routes>
       </div>
     </Router>
@@ -42,26 +37,26 @@ function App() {
   );
 }
 
-function Home() {
+function Increase() {
 
   const { count, decrease, increase } = useContext(countContext);
 
   return(
-    <div>
+    <div className="center">
       <h1>{count}</h1>
-      <button onClick={increase}>Increase</button>
+      <Button onClick={increase} color="success">Increase</Button>
     </div>
   );
 }
 
-function About() {
+function Decrease() {
 
   const { count, decrease, increase } = useContext(countContext);
 
   return(
-    <div>
+    <div className="center">
       <h1>{count}</h1>
-      <button onClick={decrease}>Decrease</button>
+      <Button onClick={decrease} color="danger">Decrease</Button>
     </div>
   );
 }
