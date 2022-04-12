@@ -1,4 +1,14 @@
-# Getting Started with Create React App
+# NSWI153 - Lab 04
+A simple repository for 4th assignment for the NSWI153 subject.
+Contains a very simple React app with two pages using a shared context state. The app uses routing for navigation between the pages and Reactstrap for providing a bit nicer GUI.
+
+You might use Docker to deploy the application.
+Simply clone the repository and run `docker-compose up -d --build`.
+The webserver will be available at [http://localhost:3001](http://localhost:3001).
+
+Otherwise, the default React help text follows.
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
