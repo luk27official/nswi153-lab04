@@ -1,68 +1,71 @@
 import './App.css';
-import React, { useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { BrowserRouter as Router,
   Routes,
   Route,
   Link,
   useNavigate } from "react-router-dom";
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {value: ''};
+const ThemeContext = createContext(null);
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+function App() {
+
+  const [style, setStyle] = useState(0);
+
+  function decrease() {
+    setStyle(style => (style - 1));
+  }
+  function increase() {
+    setStyle(style => (style + 1));
   }
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
+  return (
+  <ThemeContext.Provider value={{ style, decrease, increase }}>
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+          </ul>
+        </nav>
 
-  handleSubmit(event) {
-    this.setState({value: ""});
-    event.preventDefault();
-  }
+        <hr />
 
-  render() {
-    return (
-      <Router>
-        <div>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/about">About</Link>
-              </li>
-            </ul>
-          </nav>
-
-          <hr />
-
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-          </Routes>
-        </div>
-      </Router>
-    );
-  }
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </div>
+    </Router>
+  </ThemeContext.Provider>
+  );
 }
 
 function Home() {
+
+  const { style, decrease, increase } = useContext(ThemeContext);
+
   return(
     <div>
-      <button>XDDDD</button>
+      <h1>{style}</h1>
+      <button onClick={increase}>Increase</button>
     </div>
   );
 }
 
 function About() {
+
+  const { style, decrease, increase } = useContext(ThemeContext);
+
   return(
     <div>
-      <button>sdaf</button>
+      <h1>{style}</h1>
+      <button onClick={decrease}>Decrease</button>
     </div>
   );
 }
