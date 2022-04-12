@@ -1,6 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
 import React, { useState } from "react";
+import { BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useNavigate } from "react-router-dom";
 
 class App extends React.Component {
   constructor(props) {
@@ -22,15 +26,45 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <label>
-          {this.state.value}<br />
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
-        </label>
-        <button onClick={this.handleSubmit}>Reset</button>
-      </div>
+      <Router>
+        <div>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/about">About</Link>
+              </li>
+            </ul>
+          </nav>
+
+          <hr />
+
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
+        </div>
+      </Router>
     );
   }
+}
+
+function Home() {
+  return(
+    <div>
+      <button>XDDDD</button>
+    </div>
+  );
+}
+
+function About() {
+  return(
+    <div>
+      <button>sdaf</button>
+    </div>
+  );
 }
 
 export default App;
