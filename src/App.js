@@ -1,26 +1,22 @@
 import './App.css';
 import React, { createContext, useContext, useState } from "react";
-import { BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-  useNavigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-const ThemeContext = createContext(null);
+const countContext = createContext(null);
 
 function App() {
 
-  const [style, setStyle] = useState(0);
+  const [count, setCount] = useState(0);
 
   function decrease() {
-    setStyle(style => (style - 1));
+    setCount(count => (count - 1));
   }
   function increase() {
-    setStyle(style => (style + 1));
+    setCount(count => (count + 1));
   }
 
   return (
-  <ThemeContext.Provider value={{ style, decrease, increase }}>
+  <countContext.Provider value={{ count, decrease, increase }}>
     <Router>
       <div>
         <nav>
@@ -42,17 +38,17 @@ function App() {
         </Routes>
       </div>
     </Router>
-  </ThemeContext.Provider>
+  </countContext.Provider>
   );
 }
 
 function Home() {
 
-  const { style, decrease, increase } = useContext(ThemeContext);
+  const { count, decrease, increase } = useContext(countContext);
 
   return(
     <div>
-      <h1>{style}</h1>
+      <h1>{count}</h1>
       <button onClick={increase}>Increase</button>
     </div>
   );
@@ -60,11 +56,11 @@ function Home() {
 
 function About() {
 
-  const { style, decrease, increase } = useContext(ThemeContext);
+  const { count, decrease, increase } = useContext(countContext);
 
   return(
     <div>
-      <h1>{style}</h1>
+      <h1>{count}</h1>
       <button onClick={decrease}>Decrease</button>
     </div>
   );
