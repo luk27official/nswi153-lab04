@@ -22,14 +22,16 @@ function App() {
     <Router>
       <div className="center">
         <nav>
-          <Button color="info" className="buttonWithMargin"><Link to="/" className='nodecorations'>Increase button</Link></Button>
-          <Button color="info" className="buttonWithMargin"><Link to="/decrease" className='nodecorations'>Decrease button</Link></Button>
+          <Link to="/" className='nodecorations'><Button color="info" className="buttonWithMargin">Increase button</Button></Link>
+          <Link to="/decrease" className='nodecorations'><Button color="info" className="buttonWithMargin">Decrease button</Button></Link>
+          <Link to="/labelAndInput" className='nodecorations'><Button color="info" className="buttonWithMargin">Label + input</Button></Link>
         </nav>
         <hr />
 
         <Routes>
           <Route path="/" element={<Increase />} />
           <Route path="/decrease" element={<Decrease />} />
+          <Route path="/labelAndInput" element={<LabelAndInput />} />
         </Routes>
       </div>
     </Router>
@@ -59,6 +61,36 @@ function Decrease() {
       <Button onClick={decrease} color="danger">Decrease</Button>
     </div>
   );
+}
+
+class LabelAndInput extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleReset = this.handleReset.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleReset(event) {
+    this.setState({value: ""});
+    event.preventDefault();
+  }
+
+  render() { 
+  return(
+    <div className="center">
+      <input type="text" value={this.state.value} onChange={this.handleChange} className="inputField"></input><br />
+      <Button onClick={this.handleReset} color="warning" className='buttonWithMargin'>Reset</Button>
+      <h1>{this.state.value}</h1>
+    </div>
+    );
+  }
 }
 
 export default App;
