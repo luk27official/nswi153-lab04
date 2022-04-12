@@ -39,7 +39,7 @@ function App() {
 
 function Increase() {
 
-  const { count, decrease, increase } = useContext(countContext);
+  const { count, increase } = useContext(countContext);
 
   return(
     <div className="center">
@@ -51,7 +51,7 @@ function Increase() {
 
 function Decrease() {
 
-  const { count, decrease, increase } = useContext(countContext);
+  const { count, decrease } = useContext(countContext);
 
   return(
     <div className="center">
