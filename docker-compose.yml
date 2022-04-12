@@ -1,9 +1,8 @@
 version: '3.7'
 
 services:
-
-  sample:
-    container_name: sample
+  nswi153-lab04:
+    container_name: nswi153-lab04
     build:
       context: .
       dockerfile: Dockerfile
