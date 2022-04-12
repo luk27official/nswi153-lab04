@@ -1,4 +1,13 @@
-# Getting Started with Create React App
+#NSWI153 - Lab 04
+You might use Docker to deploy your application.
+
+Simply clone the repository and run `docker-compose up -d --build`.
+
+The webserver will be available at [http://localhost:3001](http://localhost:3001).
+
+Otherwise, the default React help text follows.
+
+##Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
